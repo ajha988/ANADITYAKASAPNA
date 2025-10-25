@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananya & Aditya: The Beginning of Their Saga</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Elegant Fonts (Playfair Display for Names, Inter for Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ELEGANT INDIAN THEME PALETTE (Matching page1.jpg) --- */
+        :root {
+            --header-maroon: #8B0000;   /* Dark Ruby Red / Maroon for Header */
+            --primary-text: #500000;    /* Darker Maroon for names and headings */
+            --background-cream: #FFFDEE; /* Very light cream/yellowish background */
+            --gold-accent: #D4AF37;      /* Rich Gold for borders/details */
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-cream);
+            overflow-x: hidden;
+        }
+        
+        /* Custom Font for Names */
+        .name-font {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.1em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            padding-top: 6rem; /* Space for fixed header */
+            padding-bottom: 4rem;
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Custom Bunting/Garland Decoration (Mimicking the image) */
+        .garland-divider {
+            height: 30px;
+            width: 100%;
+            background: linear-gradient(to bottom, var(--background-cream) 50%, rgba(255,255,255,0.0) 50%);
+            position: relative;
+            z-index: 10;
+        }
+        .garland-divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-image: 
+                /* Bunting line */
+                linear-gradient(to right, transparent 5px, #FFC0CB 5px, #FFC0CB 10px, transparent 10px),
+                /* Garland beads */
+                radial-gradient(circle at 50% 100%, #C8E6C9 4px, transparent 4px),
+                radial-gradient(circle at 10% 100%, #FFCC80 4px, transparent 4px),
+                radial-gradient(circle at 90% 100%, #F8BBD0 4px, transparent 4px);
+            background-size: 
+                100% 2px, /* line */
+                30px 30px, /* beads */
+                30px 30px,
+                30px 30px;
+            background-repeat: repeat-x;
+            background-position: 0 5px, 10px 10px, 15px 10px, 7px 10px;
+        }
+
+        /* Countdown BG Style (Matching the theme) */
+        .countdown-bg {
+            background-color: var(--primary-text); 
+            padding: 0.75rem;
+            border: 3px solid var(--gold-accent);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.5);
+        }
+        .countdown-bg > div {
+            color: var(--primary-text);
+            background-color: white;
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+
+        /* General Content Card Style */
+        .content-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        /* CRITICAL: Ensures the names stay on one line and manages overflow gracefully */
+        .name-title {
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+
+        /* Scroll to Top Button */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 50;
+            background-color: var(--gold-accent);
+            color: var(--primary-text);
+            padding: 1rem;
+            border-radius: 50%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        #scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Custom Checkbox/Radio Style for Marroon theme */
+        input[type='checkbox'], input[type='radio'] {
+            /* Appearance: none is required to style the input */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            border-radius: 4px; /* Slightly more modern look than a perfect circle for radio/checkbox */
+            border: 2px solid var(--gold-accent);
+            transition: all 0.2s ease-in-out;
+        }
+        
+        /* Radio button specific style */
+        input[type='radio'] {
+            border-radius: 50%; /* Make radio button round */
+        }
+        
+        input[type='checkbox']:checked, input[type='radio']:checked {
+            background-color: var(--header-maroon);
+            border-color: var(--header-maroon);
+        }
+
+        /* Add a tick mark for the checked state (checkbox) */
+        input[type='checkbox']:checked::before {
+            content: '✔';
+            display: block;
+            color: white;
+            font-size: 0.7rem;
+            line-height: 1;
+            text-align: center;
+            padding-top: 1px;
+        }
+        
+        /* Add a dot for the checked state (radio) */
+        input[type='radio']:checked::before {
+            content: '';
+            display: block;
+            width: 8px; /* Inner dot size */
+            height: 8px;
+            margin: 2px; /* Center the dot */
+            border-radius: 50%;
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" title="Go to top">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-8h2v4h-2v-4zm0-6h2v2h-2V6z"></path></svg>
+    </button>
+
+    <!-- Navigation Bar (Fixed Maroon Header) -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 shadow-xl p-4 transition-all duration-300" style="background-color: var(--header-maroon);">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-black name-font tracking-wider" style="color: var(--gold-accent);">A & A</a>
+            <div id="nav-links" class="hidden md:flex space-x-6 text-white font-medium tracking-wide">
+                <a href="#home" class="hover:text-gold-accent transition duration-150" style="--gold-accent: #D4AF37;">Home</a>
+                <a href="#events" class="hover:text-gold-accent transition duration-150" style="--gold-accent: #D4AF37;">Itinerary</a>
+                <a href="#story" class="hover:text-gold-accent transition duration-150" style="--gold-accent: #D4AF37;">Our Saga</a>
+                <a href="#rsvp" class="hover:text-gold-accent transition duration-150" style="--gold-accent: #D4AF37;">RSVP</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 focus:outline-none text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-3 space-y-2 text-center text-white font-medium">
+            <a href="#home" class="block py-2 hover:bg-white hover:text-header-maroon rounded-lg" style="--header-maroon: #8B0000;">Home</a>
+            <a href="#events" class="block py-2 hover:bg-white hover:text-header-maroon rounded-lg" style="--header-maroon: #8B0000;">Itinerary</a>
+            <a href="#story" class="block py-2 hover:bg-white hover:text-header-maroon rounded-lg" style="--header-maroon: #8B0000;">Our Saga</a>
+            <a href="#rsvp" class="block py-2 hover:bg-white hover:text-header-maroon rounded-lg" style="--header-maroon: #8B0000;">RSVP</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Invitation Card Style) -->
+    <header id="home" class="hero-section text-center relative">
+        <!-- CRITICAL CHANGE: Decreased max-w-4xl for a more focused card -->
+        <div class="max-w-4xl w-full mx-auto relative p-4 sm:p-8">
+            
+            <!-- Custom Bunting Decoration -->
+            <div class="garland-divider -mt-6 mb-8"></div>
+
+            <!-- Invitation Text -->
+            <div class="p-4 sm:p-8 bg-white rounded-xl shadow-xl border-t-8 border-b-8" style="border-color: var(--gold-accent);">
+                
+                <!-- COUPLE'S NAMES - SPLIT ONTO TWO LINES -->
+                <h1 class="font-black name-font leading-none mx-auto" style="color: var(--primary-text);">
+                    <!-- Name 1 -->
+                    <p class="text-5xl sm:text-7xl lg:text-8xl">ANANYA</p>
+                    <!-- Ampersand -->
+                    <p class="text-4xl sm:text-6xl lg:text-7xl my-2">&</p>
+                    <!-- Name 2 (mb-4 margin moved from h1) -->
+                    <p class="text-5xl sm:text-7xl lg:text-8xl mb-4">ADITYA</p>
+                </h1>
+                
+                <hr class="w-24 mx-auto my-6" style="border-top: 2px solid var(--gold-accent);">
+
+                <p class="text-lg sm:text-xl font-medium mb-3 text-gray-700">
+                    Together with their families
+                </p>
+                <p class="text-2xl sm:text-3xl font-semibold mb-8" style="color: var(--primary-text);">
+                    Invite you to celebrate their wedding
+                </p>
+
+                <!-- Date and Location -->
+                <h2 class="text-3xl sm:text-4xl font-extrabold name-font mb-4" style="color: var(--header-maroon);">NOVEMBER 30, 2025</h2>
+                
+                <!-- START: MODIFIED LOCATION BLOCK WITH LINK -->
+                <a href="https://maps.app.goo.gl/dq4D2QrhXyn3Mi668" target="_blank" class="block w-full text-center hover:opacity-80 transition duration-150" aria-label="View Deepti Courtyard on map">
+                    <p class="text-xl text-gray-700 font-medium mb-1 inline-flex items-center justify-center">
+                        <!-- Map Pin Icon -->
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:var(--gold-accent);">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Deepti Courtyard
+                    </p>
+                    <!-- LOCATION UPDATED HERE -->
+                    <p class="text-lg italic text-gray-500 mb-6">
+                        Rourkela, Odisha
+                    </p>
+                </a>
+                <!-- END: MODIFIED LOCATION BLOCK WITH LINK -->
+
+                <!-- Wedding Hashtag -->
+                <div class="inline-block py-2 px-6 rounded-full font-bold text-lg tracking-wider border-2" style="color: var(--primary-text); border-color: var(--gold-accent);">
+                    #ANADITYAKASAPNA
+                </div>
+
+                <!-- Countdown Timer -->
+                <div id="countdown" class="mt-8 flex justify-between items-center rounded-xl countdown-bg max-w-sm mx-auto">
+                    <div class="w-1/4 p-1">
+                        <div class="text-2xl sm:text-3xl font-extrabold" id="days">00</div>
+                        <div class="text-xs uppercase mt-1 text-gray-700 opacity-80">Days</div>
+                    </div>
+                    <div class="w-1/4 p-1">
+                        <div class="text-2xl sm:text-3xl font-extrabold" id="hours">00</div>
+                        <div class="text-xs uppercase mt-1 text-gray-700 opacity-80">Hours</div>
+                    </div>
+                    <div class="w-1/4 p-1">
+                        <div class="text-2xl sm:text-3xl font-extrabold" id="minutes">00</div>
+                        <div class="text-xs uppercase mt-1 text-gray-700 opacity-80">Mins</div>
+                    </div>
+                    <div class="w-1/4 p-1">
+                        <div class="text-2xl sm:text-3xl font-extrabold" id="seconds">00</div>
+                        <div class="text-xs uppercase mt-1 text-gray-700 opacity-80">Secs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div id="main-content" class="pb-16 pt-8">
+        <main>
+            <!-- Events Section (Dynamic Itinerary) -->
+            <section id="events" class="pt-16 pb-16 max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-4xl font-extrabold name-font mb-8" style="color: var(--primary-text);">The Grand Celebration Schedule</h2>
+
+                <!-- Dynamic Events Container -->
+                <div id="dynamic-events-content-wrapper" class="space-y-0 max-w-2xl mx-auto rounded-xl content-card">
+                    <div class="p-4 sm:p-6 text-center rounded-t-xl" style="background-color: var(--header-maroon);">
+                        <h3 class="text-2xl font-black name-font text-white">The Journey of Festivities</h3>
+                    </div>
+                    
+                    <div id="dynamic-events-content" class="px-4 sm:px-6 py-6 border-l-4 border-r-4 rounded-b-xl" style="border-color: var(--gold-accent);">
+                        <!-- Event cards will be populated here by JavaScript -->
+                        <div class="text-gray-500 font-medium pt-4 pb-2">Loading events...</div>
+                    </div>
+                </div>
+                
+            </section>
+
+            <hr class="max-w-4xl mx-auto border-gray-200">
+
+            <!-- Our Story Section (Enhanced Narrative) -->
+            <section id="story" class="py-16" style="background-color: #fcfaf3;">
+                <div class="max-w-4xl mx-auto px-6 text-center">
+                    <h2 class="text-4xl font-extrabold name-font mb-10" style="color: var(--primary-text);">Our Saga: The Alignment of Stars</h2>
+
+                    <p class="text-xl text-gray-700 mb-10 max-w-3xl mx-auto italic leading-relaxed">
+                        Our journey is a testament to the magic that happens when deep friendship blossoms into eternal love. From the shared ambition of college days to building a future together, every step has been deliberate, passionate, and blessed. This is the story of two hearts that knew each other before they knew they were destined to be one.
+                    </p>
+
+                    <!-- Story Timeline - ELONGATED -->
+                    <div class="relative space-y-12">
+                        <!-- Vertical Gold Line -->
+                        <div class="absolute w-1 h-full left-1/2 transform -translate-x-1/2 rounded-full hidden md:block" style="background-color: var(--gold-accent);"></div>
+
+                        <!-- Timeline Item 1 (L to R) -->
+                        <div class="relative flex flex-col md:flex-row items-start">
+                            <div class="md:w-1/3 text-xl font-semibold name-font mb-2 md:mb-0 text-center md:pr-16" style="color: var(--header-maroon);">2018: A Fortuitous Meeting at KIIT</div>
+                            <!-- Dot positioned at the bottom of the content box -->
+                            <div class="absolute w-4 h-4 left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 rounded-full z-10 hidden md:block" style="background-color: var(--primary-text); border: 3px solid white;"></div>
+                            <div class="md:w-2/3 content-card p-5 rounded-xl text-left border-l-4 md:border-l-0 md:border-t-4 hover:shadow-xl transition duration-300" style="border-color: var(--gold-accent);">
+                                <h4 class="text-xl font-bold mb-1 text-gray-800">The Unfolding of a Beautiful Friendship</h4>
+                                <p class="text-gray-600 text-sm">Our story didn't begin with fireworks, but with the quiet promise of a lifelong bond. We first crossed paths on the very first day of college at <strong>KIIT</strong>, instantly connecting over shared dreams and mutual interests. For four foundational years, we were the truest of friends, supporting each other's growth and cherishing a relationship built on laughter, study sessions, and unwavering trust.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2 (R to L) -->
+                        <div class="relative flex flex-col md:flex-row-reverse items-start">
+                            <div class="md:w-1/3 text-xl font-semibold name-font mb-2 md:mb-0 text-center md:pl-16" style="color: var(--header-maroon);">2022: From Friends to Forever</div>
+                            <!-- Dot positioned at the bottom of the content box -->
+                            <div class="absolute w-4 h-4 right-1/2 bottom-0 transform translate-x-1/2 translate-y-1/2 rounded-full z-10 hidden md:block" style="background-color: var(--primary-text); border: 3px solid white;"></div>
+                            <div class="md:w-2/3 content-card p-5 rounded-xl text-right border-r-4 md:border-r-0 md:border-t-4 hover:shadow-xl transition duration-300" style="border-color: var(--gold-accent);">
+                                <h4 class="text-xl font-bold mb-1 text-gray-800">Kicking Off the Next Chapter</h4>
+                                <p class="text-gray-600 text-sm">Placements marked a new beginning, not just in our careers, but in our hearts. Distance became a temporary hurdle, bridged by countless <strong>late-night flights</strong> and endless <strong>video calls</strong>. We filled our lives with <strong>romantic dates</strong> and the simple joy of learning to <strong>cook together</strong>, turning cherished friendship into an undeniable, passionate love.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Item 3 (L to R) -->
+                        <div class="relative flex flex-col md:flex-row items-start">
+                            <div class="md:w-1/3 text-xl font-semibold name-font mb-2 md:mb-0 text-center md:pr-16" style="color: var(--header-maroon);">April 2023: A Vibrant Family Union</div>
+                            <!-- Dot positioned at the bottom of the content box -->
+                            <div class="absolute w-4 h-4 left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 rounded-full z-10 hidden md:block" style="background-color: var(--primary-text); border: 3px solid white;"></div>
+                            <div class="md:w-2/3 content-card p-5 rounded-xl text-left border-l-4 md:border-l-0 md:border-t-4 hover:shadow-xl transition duration-300" style="border-color: var(--gold-accent);">
+                                <h4 class="text-xl font-bold mb-1 text-gray-800">Welcoming Our Worlds</h4>
+                                <p class="text-gray-600 text-sm">The ultimate affirmation of our bond came in April 2023 when we <strong>looped in our families</strong>. Their enthusiastic support and acceptance added a magnificent, <strong>vibrant color</strong> to our relationship, confirming that our two separate lives were truly meant to merge into one shared future. This union of families made our journey feel complete and deeply rooted.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 4 (R to L) -->
+                        <div class="relative flex flex-col md:flex-row-reverse items-start">
+                            <div class="md:w-1/3 text-xl font-semibold name-font mb-2 md:mb-0 text-center md:pl-16" style="color: var(--header-maroon);">June 27, 2025: The Eternal Promise</div>
+                            <!-- Dot positioned at the bottom of the content box -->
+                            <div class="absolute w-4 h-4 right-1/2 bottom-0 transform translate-x-1/2 translate-y-1/2 rounded-full z-10 hidden md:block" style="background-color: var(--primary-text); border: 3px solid white;"></div>
+                            <div class="md:w-2/3 content-card p-5 rounded-xl text-right border-r-4 md:border-r-0 md:border-t-4 hover:shadow-xl transition duration-300" style="border-color: var(--gold-accent);">
+                                <h4 class="text-xl font-bold mb-1 text-gray-800">Engaged Under the Rourkela Sky</h4>
+                                <p class="text-gray-600 text-sm">After years of shared memories and dreams, the question was finally popped! We were <strong>engaged in Rourkela</strong> on <strong>June 27, 2025</strong>. It was a day filled with tears of joy, family blessings, and the radiant promise of a lifetime commitment. Now, we eagerly anticipate <strong>November 30, 2025</strong>, when we will finally tie the knot.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="max-w-4xl mx-auto border-gray-200">
+            
+            <!-- RSVP Section -->
+            <section id="rsvp" class="py-16" style="background-color: var(--background-cream);">
+                <div class="max-w-lg mx-auto px-6">
+                    <h2 class="text-4xl font-extrabold name-font text-center mb-8" style="color: var(--primary-text);">Kindly RSVP</h2>
+                    
+                    <!-- Message Box (Success/Error) -->
+                    <div id="rsvp-message-box" class="hidden px-4 py-3 rounded-xl relative mb-6 content-card shadow-md" role="alert">
+                        <strong class="font-bold block text-lg mb-1" id="rsvp-status-text"></strong>
+                        <span class="block text-sm" id="rsvp-response-text"></span>
+                    </div>
+
+                    <form id="rsvp-form" class="content-card p-8 rounded-2xl shadow-2xl space-y-5 border-b-8" style="border-color: var(--primary-text);">
+                        
+                        <!-- MOVED & REPHRASED: Guest Side Selection (Using Radio Buttons) -->
+                        <div class="pt-2">
+                            <label class="block text-base font-bold text-gray-800 mb-2 name-font" style="color: var(--primary-text);">A Cherished Guest: Whose Path Guided Your Arrival?</label>
+                            <div class="flex space-x-4">
+                                
+                                <label class="flex items-center p-3 rounded-lg border cursor-pointer hover:bg-gray-50 flex-1" for="side-bride" style="border-color: var(--gold-accent);">
+                                    <!-- NOTE: Using custom style variables for tailwind classes to match theme -->
+                                    <input type="radio" id="side-bride" name="guestSide" value="Bride's Side" required class="h-4 w-4" style="color: var(--header-maroon); border-color: var(--gold-accent);">
+                                    <span class="ml-2 text-sm font-medium text-gray-700">Bride's Side</span>
+                                </label>
+                                
+                                <label class="flex items-center p-3 rounded-lg border cursor-pointer hover:bg-gray-50 flex-1" for="side-groom" style="border-color: var(--gold-accent);">
+                                    <!-- NOTE: Using custom style variables for tailwind classes to match theme -->
+                                    <input type="radio" id="side-groom" name="guestSide" value="Groom's Side" required class="h-4 w-4" style="color: var(--header-maroon); border-color: var(--gold-accent);">
+                                    <span class="ml-2 text-sm font-medium text-gray-700">Groom's Side</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- END MOVED FIELD -->
+                        
+                        <div>
+                            <label for="guest-name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="guest-name" name="guest-name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-opacity-50" style="--tw-ring-color: var(--gold-accent);">
+                        </div>
+                        
+                        <!-- Contact Number Field -->
+                        <div>
+                            <label for="contact-number" class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
+                            <input type="tel" id="contact-number" name="contact-number" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-opacity50" style="--tw-ring-color: var(--gold-accent);" placeholder="(e.g., +91 98765 43210)">
+                        </div>
+                        
+                        <div>
+                            <label for="attending" class="block text-sm font-medium text-gray-700 mb-1">Will you be attending?</label>
+                            <select id="attending" name="attending" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:outline-none appearance-none focus:ring-opacity-50" style="--tw-ring-color: var(--gold-accent);">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="yes">Joyfully Accepting (Yes)</option>
+                                <option value="no">Regretfully Declining (No)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="guests" class="block text-sm font-medium text-gray-700 mb-1">Number in Party (including yourself)</label>
+                            <input type="number" id="guests" name="guests" min="1" max="6" required value="1" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-opacity-50" style="--tw-ring-color: var(--gold-accent);">
+                        </div>
+                        
+                        <!-- Event Selection Checkboxes: ADDED 'hidden' CLASS -->
+                        <div id="event-selection-container" class="space-y-3 p-4 rounded-xl border border-dashed hidden" style="border-color: var(--gold-accent);">
+                            <p class="block text-sm font-bold text-gray-800 mb-2">Which events will you attend? (Check all that apply)</p>
+                            
+                            <!-- Mehendi & Sangeet (Unchecked by default) -->
+                            <div class="flex items-center">
+                                <input type="checkbox" id="event-mehendi" name="events" value="Mehendi & Sangeet" class="h-4 w-4">
+                                <label for="event-mehendi" class="ml-2 text-sm font-medium text-gray-700">Mehendi & Sangeet Night (Fri)</label>
+                            </div>
+                            
+                            <!-- Wedding Ceremony (Unchecked by default) -->
+                            <div class="flex items-center">
+                                <input type="checkbox" id="event-phere" name="events" value="Wedding Ceremony" class="h-4 w-4">
+                                <label for="event-phere" class="ml-2 text-sm font-medium text-gray-700">Wedding Ceremony (Sat)</label>
+                            </div>
+                            
+                            <!-- Grand Reception (Unchecked by default) -->
+                            <div class="flex items-center">
+                                <input type="checkbox" id="event-reception" name="events" value="Grand Reception" class="h-4 w-4">
+                                <label for="event-reception" class="ml-2 text-sm font-medium text-gray-700">Grand Reception (Sat)</label>
+                            </div>
+                        </div>
+                        <!-- END: Event Selection Checkboxes -->
+
+                        <button type="submit" class="w-full text-white py-3 rounded-full font-bold text-lg hover:opacity-95 transition duration-150 shadow-xl flex items-center justify-center" style="background-color: var(--header-maroon);">
+                            <span id="submit-text">Confirm Attendance</span>
+                            <svg id="spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                    <p class="text-sm text-gray-600 text-center mt-4 opacity-80">Please RSVP by November 1, 2025.</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-8 text-center text-sm" style="background-color: var(--header-maroon); color: white;">
+            <p>&copy; 2025 Ananya & Aditya. The Saga Continues.</p>
+            <p class="mt-2 text-xs opacity-80">Designed for a truly royal celebration.</p>
+        </footer>
+    </div>
+
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // --- Event Data for Itinerary (Common Events) ---
+        const mapURL = "https://maps.app.goo.gl/dq4D2QrhXyn3Mi668"; // Venue Map Link 
+        
+        const commonEvents = [
+            // Friday Evening Event
+            {
+                title: "The Mehendi & Sangeet Night",
+                date: "Friday, November 29, 2025 | 7:00 PM",
+                location: "Deepti Courtyard: The Grand Lawn & Terrace", // Location updated
+                mapLink: mapURL,
+                icon: "💃",
+                desc: "An electric evening of henna application, traditional music, and spectacular dance performances by both families. Get ready for a night of music and masti! Dress code: Traditional Festive Wear."
+            },
+            // Saturday Main Event 1 (The Wedding)
+            {
+                title: "Wedding Ceremony (Phere)",
+                date: "Saturday, November 30, 2025 | 6:00 PM",
+                location: "Deepti Courtyard: The Grand Mandap", // Location updated
+                mapLink: mapURL,
+                icon: "📿",
+                desc: "The sacred Hindu ceremony where Ananya and Aditya take their vows and seven steps around the holy fire. Please arrive on time to witness the Kanyadaan. Followed by high-tea."
+            },
+            // Saturday Main Event 2 (The Reception)
+             {
+                title: "The Grand Reception",
+                date: "Saturday, November 30, 2025 | 8:30 PM",
+                location: "Deepti Courtyard Banquet Hall", // Location updated
+                mapLink: mapURL,
+                icon: "💍",
+                desc: "A lavish dinner reception to celebrate the newlyweds. Speeches, cake cutting, and a lot of dancing! Dress code: Black Tie or Formal Indian Wear. Please RSVP promptly."
+            }
+        ];
+        
+        // --- Small Diya SVG (for Event Card Motif) ---
+        const diyaSVG = (color) => `
+            <svg class="w-5 h-5 inline mr-2" viewBox="0 0 24 24" fill="${color}" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C9.5 2 7 3.5 7 6C7 8.5 9 10 12 10C15 10 17 8.5 17 6C17 3.5 14.5 2 12 2Z" fill="var(--gold-accent)" stroke="none"/>
+                <path d="M12 10V22C12 22 8 20 8 16C8 12 10 10 12 10Z" fill="var(--gold-accent)" opacity="0.8"/>
+                <path d="M12 10V22C12 22 16 20 16 16C16 12 14 10 12 10Z" fill="var(--gold-accent)" opacity="0.8"/>
+                <path d="M12 2L13 1.5L12 1L11 1.5L12 2Z" fill="#ffc300"/>
+            </svg>
+        `;
+
+        // --- Map Pin SVG (Now clickable) ---
+        const mapPinSVG = `
+            <svg class="w-4 h-4 mr-1 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color:var(--gold-accent);">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+        `;
+
+
+        // --- Event Content Renderer (Dynamic) ---
+        const dynamicContent = document.getElementById('dynamic-events-content');
+
+        const renderEventCards = (events) => {
+            const style = getComputedStyle(document.body);
+            const primaryTextColor = style.getPropertyValue('--primary-text').trim(); 
+            const goldAccentColor = style.getPropertyValue('--gold-accent').trim();
+            
+            // Timeline style for events
+            const cardClass = 'p-4 border-l-4 rounded-lg mb-4 hover:bg-gray-50 transition duration-150'; 
+            dynamicContent.innerHTML = ''; 
+
+            events.forEach(event => {
+                const motif = diyaSVG(goldAccentColor);
+                const card = document.createElement('div');
+                card.className = cardClass;
+                card.style.borderColor = primaryTextColor;
+                
+                // Location is now a clickable link if mapLink exists
+                const locationHtml = event.mapLink 
+                    ? `<a href="${event.mapLink}" target="_blank" class="text-xs italic text-gray-500 mb-2 inline-flex items-center hover:text-header-maroon transition duration-150" style="--header-maroon: #8B0000; cursor:pointer;">
+                           ${mapPinSVG} ${event.location}
+                       </a>`
+                    : `<p class="text-xs italic text-gray-500 mb-2">${event.location}</p>`;
+
+                card.innerHTML = `
+                    <div class="text-left">
+                        <div class="flex items-center justify-start mb-1">
+                            ${motif}
+                            <h3 class="text-xl font-extrabold name-font" style="color: ${primaryTextColor};">${event.title}</h3>
+                        </div>
+                        <p class="text-sm font-bold uppercase tracking-wider text-gray-700">${event.date}</p>
+                        ${locationHtml}
+                        <p class="text-gray-600 pt-2 text-sm">${event.desc}</p>
+                    </div>
+                `;
+                dynamicContent.appendChild(card);
+            });
+        };
+
+        // --- 1. Countdown Timer Logic ---
+        const weddingDate = new Date("November 30, 2025 18:00:00").getTime(); // Updated to Phere time
+        let countdownInterval;
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                const countdownEl = document.getElementById("countdown");
+                if (countdownEl) {
+                    // Update the display for the countdown boxes when the time is reached
+                    countdownEl.innerHTML = `
+                        <div class="w-full text-center p-3">
+                            <p class="text-xl font-extrabold" style="color: var(--primary-text); background-color: white; padding: 0.5rem; border-radius: 6px;">
+                                THE GRAND DAY IS HERE!
+                            </p>
+                        </div>
+                    `;
+                    // Ensure the background color is still correct for the parent
+                    countdownEl.style.backgroundColor = getComputedStyle(document.body).getPropertyValue('--primary-text').trim();
+                }
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (document.getElementById("days")) {
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            }
+        };
+        
+        // --- 2. Initial Content Setup ---
+        const setInitialCommonContent = () => {
+            renderEventCards(commonEvents);
+        }
+
+        // --- 3. Mobile Menu Toggle ---
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // --- 4. Conditional RSVP Logic (Event visibility based on acceptance) ---
+        const attendingSelect = document.getElementById('attending');
+        const eventSelectionContainer = document.getElementById('event-selection-container');
+        
+        const handleAttendingChange = () => {
+            if (attendingSelect.value === 'yes') {
+                // Show container if accepting
+                eventSelectionContainer.classList.remove('hidden');
+            } else {
+                // Hide container if declining or not selected
+                eventSelectionContainer.classList.add('hidden');
+                // Uncheck all events to ensure no data is sent for events if declining
+                eventSelectionContainer.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            }
+        };
+
+
+        // --- 5. RSVP Form Submission (Mock API Call) ---
+        const rsvpForm = document.getElementById('rsvp-form');
+        const rsvpMessageBox = document.getElementById('rsvp-message-box');
+        const rsvpResponseText = document.getElementById('rsvp-response-text');
+        const rsvpStatusText = document.getElementById('rsvp-status-text');
+        const submitText = document.getElementById('submit-text');
+        const spinner = document.getElementById('spinner');
+
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(rsvpForm);
+            
+            // Capture all form data
+            const name = formData.get('guest-name');
+            const contactNumber = formData.get('contact-number'); 
+            const attending = formData.get('attending') === 'yes';
+            const guestCount = formData.get('guests');
+            // CAPTURE Guest Side
+            const guestSide = formData.get('guestSide'); 
+            
+            // Get all checked event values (will only include values from visible fields)
+            const selectedEvents = formData.getAll('events');
+            const eventList = selectedEvents.length > 0 ? selectedEvents.join(', ') : 'None selected';
+
+
+            submitText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+            rsvpForm.querySelector('button[type="submit"]').disabled = true;
+
+            // Mock API delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            submitText.classList.remove('hidden');
+            spinner.classList.add('hidden');
+            rsvpForm.querySelector('button[type="submit"]').disabled = false;
+
+            rsvpMessageBox.className = 'px-4 py-3 rounded-xl relative mb-6 content-card shadow-md'; 
+            
+            if (attending) {
+                rsvpMessageBox.classList.add('bg-green-100', 'border-green-400', 'text-green-700', 'shadow-md');
+                rsvpStatusText.textContent = "Confirmed!";
+                // Success message shows events, contact, and guestSide
+                rsvpResponseText.textContent = `Thank you, ${name} (${guestSide})! Your RSVP for ${guestCount} is recorded. Contact: ${contactNumber}. Events attending: ${eventList}.`;
+                rsvpForm.reset();
+                document.getElementById('guests').value = '1';
+                handleAttendingChange(); // Re-hide events after reset
+
+            } else {
+                rsvpMessageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700', 'shadow-md');
+                rsvpStatusText.textContent = "Not Attending.";
+                // Message shows contact, and guestSide
+                rsvpResponseText.textContent = `Thank you, ${name} (${guestSide}). We are sorry to hear you can't make it and hope to celebrate with you soon.`;
+                rsvpForm.reset();
+                handleAttendingChange(); // Keep events hidden after reset
+            }
+            rsvpMessageBox.classList.remove('hidden');
+        });
+
+        // --- 6. Scroll to Top Logic ---
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+
+            // Scroll to Top Visibility
+            if (scrollY > 400) {
+                scrollToTopButton.classList.add('show');
+            } else {
+                scrollToTopButton.classList.remove('show');
+            }
+        };
+
+        // Initialize all content on load
+        window.addEventListener('load', () => {
+            updateCountdown();
+            countdownInterval = setInterval(updateCountdown, 1000);
+            setInitialCommonContent(); 
+            handleAttendingChange(); // Initialize visibility of event selection
+            attendingSelect.addEventListener('change', handleAttendingChange); // Add event listener
+        });
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+    </script>
+<script>
+document.getElementById("rsvp-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    // Show spinner
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("submit-text").textContent = "Submitting...";
+
+    // Collect form data
+    const data = {
+        guestSide: document.querySelector("input[name='guestSide']:checked")?.value,
+        name: document.getElementById("guest-name").value,
+        contact: document.getElementById("contact-number").value,
+        attending: document.getElementById("attending").value,
+        guests: document.getElementById("guests").value,
+        events: Array.from(document.querySelectorAll("input[name='events']:checked")).map(el => el.value)
+    };
+
+    try {
+        const response = await fetch("https://rsvp-backend-clean.onrender.com/submit-rsvp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        // Show success message
+        document.getElementById("rsvp-status-text").textContent = "RSVP Received!";
+        document.getElementById("rsvp-response-text").textContent = result.message || "Thank you for confirming.";
+        document.getElementById("rsvp-message-box").classList.remove("hidden");
+    } catch (error) {
+        // Show error message
+        document.getElementById("rsvp-status-text").textContent = "Submission Failed";
+        document.getElementById("rsvp-response-text").textContent = "Please try again later.";
+        document.getElementById("rsvp-message-box").classList.remove("hidden");
+    } finally {
+        // Hide spinner
+        document.getElementById("spinner").classList.add("hidden");
+        document.getElementById("submit-text").textContent = "Confirm Attendance";
+    }
+});
+</script>
+
+</body>
+</html>
