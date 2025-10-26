@@ -14,14 +14,14 @@
 
         .side-pattern {
   position: absolute;
-  top: 80px; /* Adjust to sit below navbar */
-  bottom: 80px; /* Adjust to sit above footer */
+  top: 80px;
+  bottom: 80px;
   width: 300px;
-  background-image: url('nakkashi-side.png'); /* Adjust path if needed */
+  background-image: url('nakkashi-side.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  opacity: 0.2;
+  background-color: rgba(255, 215, 0, 0.3); /* 👈 Step 4: temporary gold tint */
   pointer-events: none;
   z-index: 0;
 }
@@ -838,6 +838,7 @@ document.getElementById("rsvp-form").addEventListener("submit", async function (
 
 </body>
 </html>
+
 
 
 
