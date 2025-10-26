@@ -465,20 +465,51 @@
         </footer>
     </div>
 
+    <!-- Share Your Moments Section -->
+<section id="share-moments" class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-extrabold name-font mb-6" style="color: var(--primary-text);">Share Your Moments</h2>
+    <p class="text-lg text-gray-700 mb-6">
+      We’d love to see the beautiful memories you’ve captured! Upload your favorite photos from our celebration or tag us on social media using:
+    </p>
+    <div class="inline-block py-2 px-6 rounded-full font-bold text-lg tracking-wider border-2 mb-8" style="color: var(--primary-text); border-color: var(--gold-accent);">
+      #ANADITYAKASAPNA
+    </div>
+
+    <!-- Upload Form -->
+    <form id="photo-upload-form" class="content-card p-8 rounded-2xl shadow-2xl space-y-5 border-b-8" style="border-color: var(--primary-text);">
+      <div>
+        <label for="photo-file" class="block text-sm font-medium text-gray-700 mb-2">Upload Your Photo</label>
+        <input type="file" id="photo-file" name="photo-file" accept="image/*" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-opacity-50" style="--tw-ring-color: var(--gold-accent);">
+      </div>
+      <div>
+        <label for="caption" class="block text-sm font-medium text-gray-700 mb-2">Optional Caption</label>
+        <input type="text" id="caption" name="caption" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-opacity-50" style="--tw-ring-color: var(--gold-accent);">
+      </div>
+      <button type="submit" class="w-full text-white py-3 rounded-full font-bold text-lg hover:opacity-95 transition duration-150 shadow-xl flex items-center justify-center" style="background-color: var(--header-maroon);">
+        Share Photo
+      </button>
+    </form>
+
+    <p class="text-sm text-gray-500 mt-6 italic">Note: Uploaded photos will be reviewed before being displayed publicly.</p>
+  </div>
+</section>
+
 
     <!-- JavaScript for Interactivity -->
     <script>
         // --- Event Data for Itinerary (Common Events) ---
-        const mapURL = "https://maps.app.goo.gl/kXRLTWHGPqBUMEfz6"; // Venue Map Link 
+        const mapURL = "https://maps.app.goo.gl/kXRLTWHGPqBUMEfz6"; // Mandap Map Link 
         const mapURL2 = "https://maps.app.goo.gl/xcvjE47szNdfW4rZA"; // community hall Map Link    
+        const mapURL3 = "https://maps.app.goo.gl/CKZxkFb7qU9yncor8"; // mehndi n sangeet Map Link    
         
         const commonEvents = [
             // Friday Evening Event
             {
                 title: "The Mehendi & Sangeet Night",
-                date: "Friday, November 29, 2025 | 7:00 PM",
-                location: "Deepti Courtyard: The Grand Lawn & Terrace, Rourkela", // Location updated
-                mapLink: mapURL,
+                date: "Friday, November 29, 2025 | 5:00 PM",
+                location: "Hotel Radhika Regency, Rourkela", // Location updated
+                mapLink: mapURL3,
                 icon: "💃",
                 desc: "Get ready for some naach, gaana, and full-on masti! As colors, laughter, and mehendi fill the air, it’s time to dance our hearts out and celebrate love, desi-style! Let’s make Aditya and Ananya’s Mehendi a day of joy, dhol beats, and endless smiles!"
             },
@@ -771,6 +802,7 @@ document.getElementById("rsvp-form").addEventListener("submit", async function (
 
 </body>
 </html>
+
 
 
 
