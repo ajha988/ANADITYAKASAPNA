@@ -76,7 +76,7 @@
             background-position: 0 5px, 10px 10px, 15px 10px, 7px 10px;
         }
 
-        /* Countdown BG Style (Matching the theme) */
+        /* Countdown BG  (Matching the theme) */
         .countdown-bg {
             background-color: var(--primary-text); 
             padding: 0.75rem;
@@ -90,7 +90,7 @@
             border-radius: 6px;
         }
 
-        /* General Content Card Style */
+        /* General Content Card  */
         .content-card {
             background-color: #ffffff;
             border: 1px solid #ddd;
@@ -125,9 +125,9 @@
             visibility: visible;
         }
 
-        /* Custom Checkbox/Radio Style for Marroon theme */
+        /* Custom Checkbox/Radio  for Marroon theme */
         input[type='checkbox'], input[type='radio'] {
-            /* Appearance: none is required to style the input */
+            /* Appearance: none is required to  the input */
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
@@ -137,7 +137,7 @@
             transition: all 0.2s ease-in-out;
         }
         
-        /* Radio button specific style */
+        /* Radio button specific  */
         input[type='radio'] {
             border-radius: 50%; /* Make radio button round */
         }
@@ -169,6 +169,42 @@
             background-color: white;
         }
 
+.deck-img {
+  position: absolute;
+  width: 6rem;
+  height: 9rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease-in-out;
+}
+
+.group:hover .deck-img:nth-child(1),
+.group:focus .deck-img:nth-child(1) {
+  transform: translateX(-40px) rotate(-5deg);
+}
+.group:hover .deck-img:nth-child(2),
+.group:focus .deck-img:nth-child(2) {
+  transform: translateX(0px) rotate(0deg);
+}
+.group:hover .deck-img:nth-child(3),
+.group:focus .deck-img:nth-child(3) {
+  transform: translateX(40px) rotate(5deg);
+}
+
+/* Mobile tap support */
+@media (max-width: 768px) {
+  .group:active .deck-img:nth-child(1) {
+    transform: translateX(-30px) rotate(-5deg);
+  }
+  .group:active .deck-img:nth-child(2) {
+    transform: translateX(0px) rotate(0deg);
+  }
+  .group:active .deck-img:nth-child(3) {
+    transform: translateX(30px) rotate(5deg);
+  }
+}
+
+        
     </style>
 </head>
 <body class="antialiased">
@@ -818,6 +854,7 @@ document.getElementById("rsvp-form").addEventListener("submit", async function (
 
 </body>
 </html>
+
 
 
 
