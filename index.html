@@ -471,21 +471,23 @@
     </div>
 
     <!-- Upload Form -->
-    <form id="photo-upload-form" class="content-card p-8 rounded-2xl shadow-2xl space-y-5 border-b-8" style="border-color: var(--primary-text);">
-      <div>
-        <label for="photo-file" class="block text-sm font-medium text-gray-700 mb-2">Upload Your Photo</label>
-        <input type="file" id="photo-file" name="photo-file" accept="image/*" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-opacity-50" style="--tw-ring-color: var(--gold-accent);">
-      </div>
-      <div>
-        <label for="caption" class="block text-sm font-medium text-gray-700 mb-2">Optional Caption</label>
-        <input type="text" id="caption" name="caption" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-opacity-50" style="--tw-ring-color: var(--gold-accent);">
-      </div>
-      <button type="submit" class="w-full text-white py-3 rounded-full font-bold text-lg hover:opacity-95 transition duration-150 shadow-xl flex items-center justify-center" style="background-color: var(--header-maroon);">
-        Share Photo
-      </button>
-    </form>
+ <!-- Share Your Moments Section -->
+<section id="share-moments" class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-extrabold name-font mb-6" style="color: var(--primary-text);">Share Your Moments</h2>
+    <p class="text-lg text-gray-700 mb-6">
+      Upload your favorite photos from our celebration or tag us on social media using:
+    </p>
+    <div class="inline-block py-2 px-6 rounded-full font-bold text-lg tracking-wider border-2 mb-8" style="color: var(--primary-text); border-color: var(--gold-accent);">
+      #ANADITYAKASAPNA
+    </div>
 
-    <p class="text-sm text-gray-500 mt-6 italic">Note: Uploaded photos will be reviewed before being displayed publicly.</p>
+    <!-- Google Form Upload Button -->
+    <a href="https://forms.gle/YPDoqjszw2FHD2x87" target="_blank" class="inline-block bg-header-maroon text-white font-bold py-3 px-6 rounded-full shadow-lg hover:opacity-90 transition duration-150">
+      Upload Your Photo
+    </a>
+
+    <p class="text-sm text-gray-500 mt-6 italic">Photos will be saved securely to our Drive folder. Thank you for sharing your joy!</p>
   </div>
 </section>
 
@@ -802,6 +804,7 @@ document.getElementById("rsvp-form").addEventListener("submit", async function (
 
 </body>
 </html>
+
 
 
 
