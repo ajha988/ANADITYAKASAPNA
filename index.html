@@ -11,6 +11,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght400;500;700&display=swap" rel="stylesheet">
     
     <style>
+
+        .side-pattern {
+  position: absolute;
+  top: 80px; /* Adjust to sit below navbar */
+  bottom: 80px; /* Adjust to sit above footer */
+  width: 300px;
+  background-image: url('assets/nakkashi-side.png'); /* Adjust path if needed */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.side-pattern.left {
+  left: 0;
+}
+
+.side-pattern.right {
+  right: 0;
+}
         /* --- ELEGANT INDIAN THEME PALETTE (Matching page1.jpg) --- */
         :root {
             --header-maroon: #8B0000;   /* Dark Ruby Red / Maroon for Header */
@@ -283,7 +305,11 @@
     </header>
 
     <!-- Main Content -->
-    <div id="main-content" class="pt-8">
+    <div class="relative">
+  <div class="side-pattern left"></div>
+  <div class="side-pattern right"></div>
+
+  <div id="main-content" class="pt-8 relative z-10">
         <main>
             <!-- Events Section (Dynamic Itinerary) -->
             <section id="events" class="pt-16 pb-16 max-w-4xl mx-auto px-6 text-center">
@@ -464,6 +490,8 @@
             </section>
 
         </main>
+      </div>
+</div>
 
                    <!-- Upload Form -->
  <!-- Share Your Moments Section -->
@@ -810,6 +838,7 @@ document.getElementById("rsvp-form").addEventListener("submit", async function (
 
 </body>
 </html>
+
 
 
 
